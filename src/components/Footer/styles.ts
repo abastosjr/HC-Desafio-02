@@ -20,5 +20,10 @@ export const Footer = styled.footer`
 
   & img {
     width: 20px;
+    transition: 0.2s;
+
+    &:hover {
+      transform: scale(1.3);
+    }
   }
 `;

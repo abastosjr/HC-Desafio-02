@@ -21,8 +21,6 @@
 
 :small_blue_diamond: [Linguagens, dependências e libs utilizadas](#linguagens-dependências-e-libs-utilizadas-books)
 
-...
-
 ## Descrição do projeto
 
 <p align="justify">
@@ -43,28 +41,24 @@
 
 ## Deploy da Aplicação :dash:
 
-> Link do deploy da aplicação. https://certificates-for-everyone-womakerscode.netlify.app/
-
-...
+> https://hc-desafio-02.vercel.app/
 
 ## Pré-requisitos
 
 :warning: [Node](https://nodejs.org/en/download/)
-
-...
 
 ## Como rodar a aplicação :arrow_forward:
 
 No terminal, clone o projeto:
 
 ```
-git clone
+git clone https://github.com/abastosjr/HC-Desafio-02.git
 ```
 
 Entre na pasta do projeto:
 
 ```
-cd
+cd HC-Desafio-02
 ```
 
 Instale as dependências:
@@ -88,7 +82,6 @@ yarn build
 ```
 
 Será gerado na pasta `build` a aplicação otimizada para produção
-...
 
 ## Linguagens, dependências e libs utilizadas :books:
 
@@ -97,10 +90,8 @@ Será gerado na pasta `build` a aplicação otimizada para produção
 - [Styled Components](https://styled-components.com/)
 - [React Input Mask](https://www.npmjs.com/package/react-input-mask)
 
-...
-
 ## Licença
 
 The [MIT License]() (MIT)
 
-Copyright :copyright: 2021 - Desafio #2 - Hiring Coders #2
+Copyright :copyright: 2021 - Antonio Bastos Junior
