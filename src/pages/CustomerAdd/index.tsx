@@ -20,6 +20,7 @@ const CustomerAdd: React.FC = () => {
   const [email, setEmail] = useState<string>();
   const [phone, setPhone] = useState<string>();
   const [address, setAddress] = useState<string>();
+  const [error, setError] = useState<string>();
 
   useEffect(() => {
     let customersRecover = JSON.parse(localStorage.getItem("@customers")!);
@@ -27,14 +28,21 @@ const CustomerAdd: React.FC = () => {
     else setCustomers([]);
   }, []);
 
+  useEffect(() => {
+    if (name && cpf && email && phone && address) setError("");
+  }, [name, cpf, email, phone, address]);
+
   const handleSave = () => {
+    if (!name || !cpf || !email || !phone || !address)
+      return setError("Preencha todos os campos para cadastrar o cliente");
+
     let newCustomer: ICustomer = {
       id: customers.length + 1,
-      name: name!,
-      cpf: cpf!,
-      email: email!,
-      phone: phone!,
-      address: address!,
+      name: name,
+      cpf: cpf,
+      email: email,
+      phone: phone,
+      address: address,
     };
 
     let customersMount = [...customers, newCustomer];
@@ -52,12 +60,12 @@ const CustomerAdd: React.FC = () => {
       <S.Container>
         <S.FormContent>
           <h2>Cadastrar cliente</h2>
+          {error ? <p>{error}</p> : ""}
           <label htmlFor="input-name">Nome completo:</label>
           <input
             type="text"
             id="input-name"
             placeholder="Nome completo do cliente"
-            required
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -67,7 +75,6 @@ const CustomerAdd: React.FC = () => {
             type="text"
             id="input-cpf"
             placeholder="CPF do cliente"
-            required
             value={cpf}
             onChange={(e) => setCpf(e.target.value)}
           />
@@ -76,7 +83,6 @@ const CustomerAdd: React.FC = () => {
             type="email"
             id="input-email"
             placeholder="E-mail do cliente"
-            required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -86,7 +92,6 @@ const CustomerAdd: React.FC = () => {
             type="text"
             id="input-phone"
             placeholder="Telefone do cliente"
-            required
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
@@ -95,7 +100,6 @@ const CustomerAdd: React.FC = () => {
             type="text"
             id="input-address"
             placeholder="Endereço do cliente"
-            required
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />

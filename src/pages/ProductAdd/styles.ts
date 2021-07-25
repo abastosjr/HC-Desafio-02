@@ -22,6 +22,19 @@ export const FormContent = styled.form`
   border-radius: 8px;
   box-shadow: -4px 6px 5px rgba(0, 0, 0, 0.05);
 
+  & p {
+    margin: 5px 15px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background: #ee1111;
+    align-items: center;
+    text-align: center;
+  }
+
+  & h2 {
+    margin-bottom: 10px;
+  }
+
   & label {
     margin: 5px auto 0 5%;
     font-size: 16px;

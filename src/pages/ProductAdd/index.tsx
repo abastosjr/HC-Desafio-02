@@ -18,19 +18,27 @@ const ProductAdd: React.FC = () => {
   const [description, setDescription] = useState<string>();
   const [price, setPrice] = useState<number>();
   const [photo, setPhoto] = useState<string>();
+  const [error, setError] = useState<string>();
 
   useEffect(() => {
     let productsRecover = JSON.parse(localStorage.getItem("@products")!);
     setProducts(productsRecover);
   }, []);
 
+  useEffect(() => {
+    if (name && description && price && photo) setError("");
+  }, [name, description, price, photo]);
+
   const handleSave = () => {
+    if (!name || !description || !price || !photo)
+      return setError("Preencha todos os campos para cadastrar o produto");
+
     let newProduct: IProduct = {
       id: products.length + 1,
-      name: name!,
-      description: description!,
-      price: price!,
-      photo: photo!,
+      name: name,
+      description: description,
+      price: price,
+      photo: photo,
     };
 
     let productsMount = [...products, newProduct];
@@ -48,12 +56,12 @@ const ProductAdd: React.FC = () => {
       <S.Container>
         <S.FormContent>
           <h2>Cadastrar produto</h2>
+          {error ? <p>{error}</p> : ""}
           <label htmlFor="input-name">Nome:</label>
           <input
             type="text"
             id="input-name"
             placeholder="Nome do produto"
-            required
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -62,7 +70,6 @@ const ProductAdd: React.FC = () => {
             type="text"
             id="input-description"
             placeholder="Descrição do produto"
-            required
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -71,7 +78,6 @@ const ProductAdd: React.FC = () => {
             type="number"
             id="input-price"
             placeholder="Preço do produto"
-            required
             value={price}
             onChange={(e) => setPrice(Number(e.target.value))}
           />
@@ -80,7 +86,6 @@ const ProductAdd: React.FC = () => {
             type="url"
             id="input-photo"
             placeholder="Link da foto do produto"
-            required
             value={photo}
             onChange={(e) => setPhoto(e.target.value)}
           />
